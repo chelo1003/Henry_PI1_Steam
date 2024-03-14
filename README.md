@@ -55,15 +55,22 @@ Las consultas propuestas son las siguientes:
 
 ## Análisis exploratorio de los datos: (Exploratory Data Analysis-EDA)
 
-A grandes rasgos, se tiene un dataset con videojuegos de la platafoma Steam Games con descripción sobre estos como el género o etiquetas en general y el precio, otro dataframe con los usuarios registrados y las horas jugadas totales para cada juego y por último los reviews de estos usuarios hacia cada juego. 
+Los datos provienen de [STEAM](https://store.steampowered.com/), que es una plataforma de distribución digital de videojuegos, para Windows y Unix. Fueron recolectados entre los años 2010 y 2015.
+La presentación de los datos en bruto es a través de tres archivos json.
 
-Hay 32133  juegos y 58459 usuarios, de los cuales 25485 usuarios,  dejaron 58431 comentarios sobre los juegos. 
+- "steam_games" con información sobre de los juegos, como género, desarrollador, precio, etc. En este dataset hay aproximadamente 32000 juegos.  
+- "user_reviews" que contiene reseñas y recomendaciones de juegos por parte de los usuarios. En este dataset hay aproximadamente 25500 usuarios que dejaron unas 60000 reseñas.
+- "user_items" que contiene el tiempo jugado por cada usuario a cada juego. En este dataset hay datos de tiempo jugado de unos 70000 usuarios a unos 11000 juegos diferentes.
 
-Luego de este analisis general se realiza un reconocimiento de las variables más importantes para la recomendación, se categorizan algunas de ellas y se muestran en gráficos. En este punto se debe aclarar que debido a ser este un MVP, se redujeron las variables a utilizar en el ML a lo mínimo necesario que requiere la libreria surprice en sus propuestas básicas, estas son: user_id, item_id y sentimente, que es la "puntuación" del usuario hacia determinado juego, que se obtiene del análisis de sentimiento y que tiene tres opciones. Puntuación negativa, nula o positiva.
+Como criterio general para todos los datasets, en el EDA se revisaron los valores nulos y se decidió si rellenarlos o eliminarlos, se borraron registros duplicados, se hicieron estudios de distribución para variables categóricas, se revisaron distribuciones mediante boxplots para variables cuantitativas contínuas, etc. Los datasets se dejaron procesados para la etapa de Machine Learning, con la posibilidad de hacer cambios en esta última etapa para que puedan adaptarse y ser consumidos por los modelos, una vez seleccionados.
 
 ## Modelo de aprendizaje automático:
 
 Para armar un sistema de recomendación, se procede a entrenar el modelo de machine learning, para ello se utiliza la librería surprice, ingestando los datos como un dataframe y utlizando el método TrainTestSplit. Puede ver la documentación oficial aquí: https://surprise.readthedocs.io/en/stable/getting_started.html#train-test-split-and-the-fit-method
+
+Para el sistema de recomendación Item-Item voy a usar Similaridad del Coseno de Scikit Learn. A partir de los datasets que salieron del EDA, voy a adaptar las variables para que puedan ser consumidas por el modelo, voy a unir los 3 datasets en un solo Dataframe, que va a tener una fila para cada juego.
+
+https://scikit-learn.org/stable/modules/generated/sklearn.metrics.pairwise.cosine_similarity.html
 
 El modelo entrenado se guardo con la librería joblib, obteniendo un archivo .pkl que será consumido por la función de recomendación. 
 

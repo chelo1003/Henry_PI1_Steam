@@ -15,9 +15,7 @@ app = FastAPI()
 @app.get("/PlayTimeGenre/{genre}", name="Ingresar un género para obtener el año con más horas jugadas:")
 
 def PlayTimeGenre(genre: str = None):
-    
-    genre = genre.capitalize()
-    
+
     # Filtrar el Dataframe por el género recibido
     genero_elegido = df_PlayTimeGenre[df_PlayTimeGenre['genre'] == genre]
 
@@ -35,8 +33,6 @@ def PlayTimeGenre(genre: str = None):
 
 def UserForGenre(genre: str = None):
 
-    genre = genre.capitalize()
-    
     # Filtrar el Dataframe por el género recibido
     genero_elegido = df_UserForGenre_1[df_UserForGenre_1['genre'] == genre]
 

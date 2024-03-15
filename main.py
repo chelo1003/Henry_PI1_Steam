@@ -54,7 +54,7 @@ def UserForGenre(genre: str = None):
     usuario = genero_elegido['user_id'].values[0]
 
     # Filtrar el segundo Dataframe por el usuario Top
-    usuario_top = df_UserForGenre_2[df_UserForGenre_2['user_id'] == usuario]
+    usuario_top = df_UserForGenre_2[(df_UserForGenre_2['user_id'] == usuario) & (df_UserForGenre_2['genre'].str.contains(genre, case=False))]
 
     # Llenar el diccionario de horas jugadas por año
     lista_horas_jugadas = [
@@ -141,6 +141,14 @@ def Sentiment_Analysis(year: int):
 def recomendacion_juego(item_id: int):
     N = 5
 
+    # Reviso si el id ingresado es un entero
+    if type(item_id) != int:
+        return ("Ingrese un id de juego.")  
+
+    # Reviso si el id ingresado está en la lista de juegos
+    if item_id not in df_matriz_similitudes.index:
+        return ("No se encuentra un juego con el id ingresado.")
+    
     # Supongamos que 'df_matriz_similitudes' es tu matriz de similitud y 'juego_referencia' es el id del juego que quieres comparar
     juego_referencia = item_id
 

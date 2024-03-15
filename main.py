@@ -18,6 +18,10 @@ app = FastAPI()
 
 def PlayTimeGenre(genre: str = None):
 
+    # Devolver una advertencia si no se introduce un género
+    if genre == "":
+        return {"Si no sabe que buscar, no busque nada."}
+    
     # Filtrar el Dataframe por el género recibido
     genero_elegido = df_PlayTimeGenre[df_PlayTimeGenre['genre'].str.contains(genre, case=False)]
 
@@ -35,6 +39,10 @@ def PlayTimeGenre(genre: str = None):
 
 def UserForGenre(genre: str = None):
 
+    # Devolver una advertencia si no se introduce un género
+    if genre == "":
+        return {"Si no sabe que buscar, no busque nada."}
+    
     # Filtrar el Dataframe por el género recibido
     genero_elegido = df_UserForGenre_1[df_UserForGenre_1['genre'].str.contains(genre, case=False)]
 
@@ -63,10 +71,18 @@ def UserForGenre(genre: str = None):
 
 def UsersRecommend(posted: int):
 
-    # Filtrar el Dataframe por el año recibido
+    # Verificar que se ingresa un entero
+    if type(posted) != int:
+        return ("Ingrese un número.")
+    
+    # Buscar las filas que coinciden con el año ingresado
     df_anio = df_UsersRecommend[df_UsersRecommend['posted'] == posted]
 
-    # Crear un diccionario con los 3 primeros puestos
+    # Verificar si hay datos para el año ingresado
+    if df_anio.empty:
+        return ("No hay datos para el año indicado.")
+
+    # Construir la respuesta
     top_3_dict = {}
     for i, row in df_anio.iterrows():
         puesto = "Puesto " + str(i + 1 - df_anio.index[0])
@@ -78,11 +94,19 @@ def UsersRecommend(posted: int):
 @app.get("/UsersNotRecommend/{posted}", name="Ingresar un año para saber cuales fueron los 3 juegos menos recomendados ese año:")
     
 def UsersNotRecommend(posted: int):
-
-    # Filtrar el Dataframe por el año recibido
+    
+    # Verificar que se ingresa un entero
+    if type(posted) != int:
+        return ("Ingrese un número.")
+    
+    # Buscar las filas que coinciden con el año ingresado
     df_anio = df_UsersNotRecommend[df_UsersNotRecommend['posted'] == posted]
 
-    # Crear un diccionario con los 3 primeros puestos
+    # Verificar si hay datos para el año ingresado
+    if df_anio.empty:
+        return ("No hay datos para el año indicado.")
+    
+    # Construir la respuesta
     top_3_dict = {}
     for i, row in df_anio.iterrows():
         puesto = "Puesto " + str(i + 1 - df_anio.index[0])
@@ -94,10 +118,19 @@ def UsersNotRecommend(posted: int):
 @app.get("/Sentiment_Analysis/{release_year}", name="Ingresar un año para obtener el recuento re reseñas negativas, neutras y positivas de ese año (release_date):")
 
 def Sentiment_Analysis(year: int):
-    # Filtrar el Dataframe por el año recibido
-    df_anio = df_sentiment_analysis[df_sentiment_analysis['release_date'] == year]
+
+    # Verificar que se ingresa un entero
+    if type(year) != int:
+        return ("Ingrese un número.")
     
-    # Crear un diccionario con los datos recibidos
+    # Filtrar el DataFrame para obtener las filas que coinciden con el release_date dado
+    df_anio = df_sentiment_analysis[df_sentiment_analysis['release_date'] == year]
+ 
+    # Verificar si hay datos para el año ingresado
+    if df_anio.empty:
+        return ("No hay datos para el año indicado.")
+       
+    # Convertir las filas coincidentes a una lista de diccionarios
     filas_lista = df_anio.to_dict(orient='records')
     
     return filas_lista

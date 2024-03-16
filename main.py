@@ -43,7 +43,7 @@ def UserForGenre(genre: str = None):
         return {"Si no sabe que buscar, no busque nada."}
     
     # Filtrar el Dataframe por el género recibido
-    genero_elegido = df_UserForGenre_2[df_UserForGenre_2['genre'].str.contains(genre, case=False)].iloc[0:1]
+    genero_elegido = df_UserForGenre_2[df_UserForGenre_2['genre'].str.contains(genre, case=False)]
 
     # Evitar errores si recibo un valor desconocido
     if genero_elegido.empty:
@@ -52,12 +52,9 @@ def UserForGenre(genre: str = None):
     # Obtener el usuario buscado
     usuario = genero_elegido['user_id'].values[0]
 
-    # Filtrar el segundo Dataframe por el usuario Top
-    usuario_top = df_UserForGenre_2[(df_UserForGenre_2['user_id'] == usuario) & (df_UserForGenre_2['genre'].str.contains(genre, case=False))]
-
     # Llenar el diccionario de horas jugadas por año
     lista_horas_jugadas = [
-    {"Año": anio, "minutos": tiempo} for anio, tiempo in zip(usuario_top['posted'], usuario_top['playtime_forever'])
+    {"Año": anio, "minutos": tiempo} for anio, tiempo in zip(genero_elegido['posted'], genero_elegido['playtime_forever'])
     ]
 
     return {

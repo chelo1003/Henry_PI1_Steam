@@ -64,9 +64,9 @@ La presentación de los datos en bruto es a través de tres archivos json.
 
 Como criterio general para todos los datasets, en el EDA se revisaron los valores nulos y se decidió si rellenarlos o eliminarlos, se borraron registros duplicados, se hicieron estudios de distribución para variables categóricas, se revisaron distribuciones mediante boxplots para variables cuantitativas contínuas, etc. Los datasets se dejaron procesados para la etapa de Machine Learning, con la posibilidad de hacer cambios en esta última etapa para que puedan adaptarse y ser consumidos por los modelos, una vez seleccionados.
 
-## Modelo de aprendizaje automático:
+## Modelo de aprendizaje automático
 
-Para armar un sistema de recomendación, se procede a entrenar el modelo de machine learning, para ello se utiliza la librería surprice, ingestando los datos como un dataframe y utlizando el método TrainTestSplit. Puede ver la documentación oficial aquí: https://surprise.readthedocs.io/en/stable/getting_started.html#train-test-split-and-the-fit-method
+Para armar un sistema de recomendación, se procede a entrenar el modelo de machine learning, para ello se utiliza la librería surprice, ingestando los datos como un dataframe y utlizando el método TrainTestSplit. Puede ver la documentación oficial aquí: https://scikit-learn.org/stable/modules/generated/sklearn.metrics.pairwise.cosine_similarity.html#sklearn.metrics.pairwise.cosine_similarity
 
 Para el sistema de recomendación Item-Item voy a usar Similaridad del Coseno de Scikit Learn. A partir de los datasets que salieron del EDA, voy a adaptar las variables para que puedan ser consumidas por el modelo, voy a unir los 3 datasets en un solo Dataframe, que va a tener una fila para cada juego.
 

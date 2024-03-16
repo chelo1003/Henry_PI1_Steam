@@ -4,7 +4,6 @@ import pyarrow.parquet as pq
 
 # Importar los Datos
 df_PlayTimeGenre = pd.read_csv("funciones/PlayTimeGenre.csv", low_memory=False)
-df_UserForGenre_1 = pd.read_csv("funciones/UserForGenre_1.csv", low_memory=False)
 df_UserForGenre_2 = pd.read_csv("funciones/UserForGenre_2.csv", low_memory=False)
 df_UsersRecommend = pd.read_csv("funciones/UsersRecommend.csv", low_memory=False)
 df_UsersNotRecommend = pd.read_csv("funciones/UsersNotRecommend.csv", low_memory=False)
@@ -44,7 +43,7 @@ def UserForGenre(genre: str = None):
         return {"Si no sabe que buscar, no busque nada."}
     
     # Filtrar el Dataframe por el género recibido
-    genero_elegido = df_UserForGenre_1[df_UserForGenre_1['genre'].str.contains(genre, case=False)]
+    genero_elegido = df_UserForGenre_2[df_UserForGenre_2['genre'].str.contains(genre, case=False)].iloc[0:1]
 
     # Evitar errores si recibo un valor desconocido
     if genero_elegido.empty:

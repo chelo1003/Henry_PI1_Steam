@@ -111,7 +111,7 @@ def UsersNotRecommend(posted: int):
     return top_3_dict
 
 
-@app.get("/Sentiment_Analysis/{release_year}", name="Ingresar un año para obtener el recuento re reseñas negativas, neutras y positivas de ese año (release_date):")
+@app.get("/Sentiment_Analysis/{release_year}", name="Ingresar un año para obtener el recuento de reseñas negativas, neutras y positivas de ese año (release_date):")
 
 def Sentiment_Analysis(year: int):
 

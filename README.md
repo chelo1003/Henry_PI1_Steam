@@ -1,6 +1,7 @@
 # Proyecto Steam - Recomendación de Juegos
 
 Este proyecto consiste en crear un MVP (Minimum Viable Product) consumible mediante una API REST o RESTful, que recomiende de manera personalizada videojuegos a cada usuario (usuario-item). Para el análisis de sentimiento se utiliza la libreria TextBlob y para el entrenamiento del modelo de recomendación se utiliza la librería surprice.
+Los datos provienen de [STEAM](https://store.steampowered.com/), que es una plataforma de distribución digital de videojuegos, para Windows y Unix.
 
 # Diagrama de Flujo del Proyecto
 
@@ -55,8 +56,7 @@ Las consultas propuestas son las siguientes:
 
 ## Análisis exploratorio de los datos: (Exploratory Data Analysis-EDA)
 
-Los datos provienen de [STEAM](https://store.steampowered.com/), que es una plataforma de distribución digital de videojuegos, para Windows y Unix. Fueron recolectados entre los años 2010 y 2015.
-La presentación de los datos en bruto es a través de tres archivos json.
+Los datos fueron recolectados entre los años 2010 y 2015. La presentación de los datos en "bruto" es a través de tres archivos json.
 
 - "steam_games" con información sobre de los juegos, como género, desarrollador, precio, etc. En este dataset hay aproximadamente 32000 juegos.  
 - "user_reviews" que contiene reseñas y recomendaciones de juegos por parte de los usuarios. En este dataset hay aproximadamente 25500 usuarios que dejaron unas 60000 reseñas.
@@ -73,6 +73,4 @@ A partir de los datasets obtenidos en el EDA, se adaptan las variables para que 
 A la matriz resultante se le agregan nuevamente los id de juegos como índice y los nombres de juegos como nombres de columnas, y se sube al repositorio para que sea levantada en el deploy.
 
 ## Video 
-En el enlace puede ver un video de la API en Render y su funcionamieto
-
-https://youtu.be/
+En siguiente es un enlace a una carpeta de Google Drive donde está el video explicativo del proyecto. [Enlace a la carpeta.](https://drive.google.com/drive/folders/1RZIILeALXjE1Zc-VDHFdESgqYUjR1Hq2)

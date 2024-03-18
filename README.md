@@ -1,6 +1,7 @@
 # Proyecto Steam - Recomendación de Juegos
 
-Este proyecto consiste en crear un MVP (Minimum Viable Product) consumible mediante una API REST o RESTful, que recomiende de manera personalizada videojuegos a cada usuario (usuario-item). Para el análisis de sentimiento se utiliza la libreria TextBlob y para el entrenamiento del modelo de recomendación se utiliza la librería surprice.
+Este proyecto consiste en crear un MVP (Minimum Viable Product) que recomiende videojuegos por similitud, consumible mediante una API REST o RESTful, implementado con el famework FastAPI y deployado en Render. 
+Para el análisis de sentimiento se utiliza la libreria TextBlob y para el entrenamiento del modelo de recomendación se utiliza el método de Similitud del Coseno de la librería Scikit Learn.
 Los datos provienen de [STEAM](https://store.steampowered.com/), que es una plataforma de distribución digital de videojuegos, para Windows y Unix.
 
 # Diagrama de Flujo del Proyecto

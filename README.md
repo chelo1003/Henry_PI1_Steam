@@ -72,5 +72,9 @@ A partir de los datasets obtenidos en el EDA, se adaptan las variables para que 
 
 A la matriz resultante se le agregan nuevamente los id de juegos como índice y los nombres de juegos como nombres de columnas, y se sube al repositorio para que sea levantada en el deploy.
 
+La consulta propuesta para la sección de machine learning es la siguiente:
+
+  6) def recomendacion_juego( id de producto ): Ingresando el id de producto, deberíamos recibir una lista con 5 juegos recomendados similares al ingresado.
+
 ## Video 
 En siguiente es un enlace a una carpeta de Google Drive donde está el video explicativo del proyecto. [Enlace a la carpeta.](https://drive.google.com/drive/folders/1RZIILeALXjE1Zc-VDHFdESgqYUjR1Hq2)
